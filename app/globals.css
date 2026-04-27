@@ -1,1 +1,135 @@
 @import "tailwindcss";
+
+/* ─── Dark mode: class-based for manual toggle ─────────────────────────────── */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ─── Semantic tokens — raw CSS vars, change per theme ──────────────────────── */
+:root {
+  --canvas: #FAFAF7;
+  --card: #F2F1EE;
+  --card-elevated: #FFFFFF;
+  --stroke: #E5E3DE;
+  --stroke-subtle: #EDECEA;
+  --ink: #111110;
+  --ink-muted: #706F6C;
+  --ink-subtle: #9B9A97;
+}
+
+.dark {
+  --canvas: #0A0A0A;
+  --card: #141414;
+  --card-elevated: #1C1C1C;
+  --stroke: #272727;
+  --stroke-subtle: #1E1E1E;
+  --ink: #F5F5F0;
+  --ink-muted: #9B9A97;
+  --ink-subtle: #706F6C;
+}
+
+/* ─── Tailwind theme — maps semantic vars to utilities ───────────────────────── */
+@theme inline {
+  /* Colors */
+  --color-canvas: var(--canvas);
+  --color-card: var(--card);
+  --color-card-elevated: var(--card-elevated);
+  --color-stroke: var(--stroke);
+  --color-stroke-subtle: var(--stroke-subtle);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-subtle: var(--ink-subtle);
+
+  /* Category accents */
+  --color-startups: #EA580C;
+  --color-frontend: #2563EB;
+  --color-backend: #16A34A;
+  --color-ai: #7C3AED;
+  --color-aidev: #DB2777;
+
+  /* Category accent backgrounds (very low opacity versions) */
+  --color-startups-dim: #FFF4EE;
+  --color-frontend-dim: #EFF4FF;
+  --color-backend-dim: #F0FAF3;
+  --color-ai-dim: #F4F0FF;
+  --color-aidev-dim: #FFF0F7;
+
+  /* Fonts — next/font sets these CSS vars on <html> */
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains);
+
+  /* Shadows */
+  --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.07), 0 1px 2px -1px rgb(0 0 0 / 0.04);
+  --shadow-card-hover: 0 6px 16px 0 rgb(0 0 0 / 0.10), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+  --shadow-ring: 0 0 0 1px var(--stroke);
+
+  /* Border radius */
+  --radius-card: 12px;
+  --radius-pill: 999px;
+}
+
+/* ─── Base styles ─────────────────────────────────────────────────────────────── */
+html {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  background-color: var(--canvas);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Image defaults */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Focus ring — accessible but minimal */
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ─── Typography scale ──────────────────────────────────────────────────────── */
+.t-display-xl {
+  font-family: var(--font-fraunces);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+}
+
+.t-display-lg {
+  font-family: var(--font-fraunces);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  font-weight: 600;
+}
+
+.t-display-md {
+  font-family: var(--font-fraunces);
+  font-size: clamp(1.25rem, 2vw, 1.625rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+.t-label {
+  font-family: var(--font-jetbrains);
+  font-size: 0.6875rem;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.t-meta {
+  font-family: var(--font-jetbrains);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--ink-muted);
+}
