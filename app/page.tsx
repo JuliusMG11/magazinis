@@ -1,12 +1,11 @@
-import type { Category } from '@/lib/types'
-import { MOCK_ITEMS } from '@/lib/mock-data'
+import type { Category, ContentItem } from '@/lib/types'
+import { getHeroItem, getRecentItems } from '@/lib/db/queries'
 import { HeroCard } from '@/components/cards/HeroCard'
 import { VideoCard } from '@/components/cards/VideoCard'
 import { PodcastCard } from '@/components/cards/PodcastCard'
 import { ArticleCard } from '@/components/cards/ArticleCard'
 import { ForumCard } from '@/components/cards/ForumCard'
 import { MotionCard } from '@/components/cards/MotionCard'
-import type { ContentItem } from '@/lib/types'
 
 function CardByType({ item, size }: { item: ContentItem; size?: 'default' | 'large' }) {
   switch (item.source_type) {
@@ -27,12 +26,11 @@ interface HomePageProps {
 
 export default async function HomePage({ searchParams }: HomePageProps) {
   const { category } = await searchParams
-  const filtered = category
-    ? MOCK_ITEMS.filter((item) => item.category === (category as Category))
-    : MOCK_ITEMS
+  const activeCategory = category as Category | undefined
 
-  const hero = filtered[0]
-  const rest = filtered.slice(1)
+  const hero = await getHeroItem()
+  const rest = await getRecentItems({ category: activeCategory, limit: 30 })
+  const gridItems = hero ? rest.filter((item) => item.id !== hero.id) : rest
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
@@ -45,22 +43,24 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         </section>
       )}
 
-      {rest.length > 0 && (
+      {gridItems.length > 0 && (
         <section>
           <div className="flex items-center gap-4 mb-6">
             <p className="t-label text-ink-subtle">Latest</p>
             <div className="flex-1 h-px bg-stroke" />
           </div>
-          <MagazineGrid items={rest} />
+          <MagazineGrid items={gridItems} />
         </section>
       )}
 
-      {filtered.length === 0 && (
+      {!hero && gridItems.length === 0 && (
         <div className="text-center py-24">
           <p className="font-display text-2xl text-ink-muted font-semibold">
             Nothing here yet.
           </p>
-          <p className="text-sm text-ink-subtle mt-2">Check back after the next daily run.</p>
+          <p className="text-sm text-ink-subtle mt-2">
+            Check back after the next daily run.
+          </p>
         </div>
       )}
     </div>
