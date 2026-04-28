@@ -34,14 +34,17 @@ export async function getHeroItem(): Promise<ContentItem | null> {
 
 export async function getItemsByCategory(
   category: Category,
-  limit = 20,
+  opts: { limit?: number; offset?: number } = {},
 ): Promise<ContentItem[]> {
+  const { limit = 20, offset = 0 } = opts
+
   const rows = await db
     .select()
     .from(contentItems)
     .where(eq(contentItems.category, category))
     .orderBy(desc(contentItems.published_at))
     .limit(limit)
+    .offset(offset)
 
   return rows.map(rowToContentItem)
 }
