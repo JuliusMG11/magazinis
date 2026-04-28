@@ -116,13 +116,8 @@ export const YOUTUBE_CHANNELS: YouTubeChannelConfig[] = [
 // ── Spotify shows ─────────────────────────────────────────────────────────────
 // Show IDs from: https://open.spotify.com/show/{showId}
 export const SPOTIFY_SHOWS: SpotifyShowConfig[] = [
-  // Startups
-  { showId: '7Fj0XEuJ5TmHLGBRnPVGAT', name: 'Acquired', category: 'startups' },
-  { showId: '6RZBMmia2C6IgCaE4DGS9k', name: "Lenny's Podcast", category: 'startups' },
   // Frontend
   { showId: '4kYCRYJ3yK5DQbP5tbfZby', name: 'Syntax.fm', category: 'frontend' },
   // AI News
   { showId: '2MAi0BvDc6GTFvKFPXnkCL', name: 'Lex Fridman Podcast', category: 'ai' },
-  // AI Dev
-  { showId: '5LkBMHo2zDJbxHiBQJxugg', name: 'Latent Space', category: 'ai-dev' },
 ]
