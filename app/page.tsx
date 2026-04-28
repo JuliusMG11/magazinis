@@ -1,8 +1,8 @@
 import type { Category, ContentItem } from '@/lib/types'
 import { getHeroItem, getRecentItems } from '@/lib/db/queries'
 import { HeroCard } from '@/components/cards/HeroCard'
-import { VideoCard } from '@/components/cards/VideoCard'
-import { PodcastCard } from '@/components/cards/PodcastCard'
+import { VideoCardInteractive } from '@/components/cards/VideoCardInteractive'
+import { PodcastCardInteractive } from '@/components/cards/PodcastCardInteractive'
 import { ArticleCard } from '@/components/cards/ArticleCard'
 import { ForumCard } from '@/components/cards/ForumCard'
 import { MotionCard } from '@/components/cards/MotionCard'
@@ -10,9 +10,9 @@ import { MotionCard } from '@/components/cards/MotionCard'
 function CardByType({ item, size }: { item: ContentItem; size?: 'default' | 'large' }) {
   switch (item.source_type) {
     case 'youtube':
-      return <VideoCard item={item} size={size} />
+      return <VideoCardInteractive item={item} size={size} />
     case 'spotify':
-      return <PodcastCard item={item} />
+      return <PodcastCardInteractive item={item} />
     case 'forum':
       return <ForumCard item={item} />
     default:
