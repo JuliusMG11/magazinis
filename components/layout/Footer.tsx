@@ -1,4 +1,6 @@
 import { ALL_CATEGORIES, CATEGORY_LABELS } from '@/lib/types'
+import { getLastCronRun } from '@/lib/db/queries'
+import { formatRelativeTime } from '@/lib/utils'
 
 const SOURCES = [
   'YouTube', 'Spotify', 'Hacker News', 'Medium',
@@ -6,7 +8,12 @@ const SOURCES = [
   'Anthropic Blog', 'The Decoder',
 ]
 
-export function Footer() {
+export async function Footer() {
+  const lastRun = await getLastCronRun()
+  const lastUpdatedText = lastRun?.finished_at
+    ? `Updated ${formatRelativeTime(lastRun.finished_at)}`
+    : 'Updated daily at 07:00 CET'
+
   const year = new Date().getFullYear()
 
   return (
@@ -42,7 +49,7 @@ export function Footer() {
           </div>
         </div>
         <div className="pt-6 border-t border-stroke-subtle flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-          <p className="t-meta">Updated daily at 07:00 CET</p>
+          <p className="t-meta">{lastUpdatedText}</p>
           <p className="t-meta">© {year} Daily Digest — personal project, no commercial affiliation</p>
         </div>
       </div>
