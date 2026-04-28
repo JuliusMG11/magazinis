@@ -21,6 +21,7 @@ export const RSS_SOURCES: RssSourceConfig[] = [
   // Backend
   { name: 'Node.js Blog', url: 'https://nodejs.org/en/feed/blog.xml', category: 'backend' },
   { name: 'Dev.to node', url: 'https://dev.to/feed/tag/node', category: 'backend' },
+  { name: 'Dev.to TypeScript', url: 'https://dev.to/feed/tag/typescript', category: 'backend' },
   // AI News
   { name: 'The Decoder', url: 'https://the-decoder.com/feed/', category: 'ai' },
   { name: 'MIT Tech Review AI', url: 'https://www.technologyreview.com/feed/', category: 'ai' },
@@ -28,6 +29,7 @@ export const RSS_SOURCES: RssSourceConfig[] = [
   // AI Dev
   { name: 'Dev.to AI', url: 'https://dev.to/feed/tag/ai', category: 'ai-dev' },
   { name: 'Dev.to machine-learning', url: 'https://dev.to/feed/tag/machinelearning', category: 'ai-dev' },
+  { name: 'Dev.to LLM', url: 'https://dev.to/feed/tag/llm', category: 'ai-dev' },
 ]
 
 // ── Medium RSS feeds ─────────────────────────────────────────────────────────
