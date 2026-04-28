@@ -1,6 +1,6 @@
-import { desc, eq } from 'drizzle-orm'
+import { desc, eq, sql } from 'drizzle-orm'
 import { db } from './client'
-import { contentItems } from './schema'
+import { contentItems, cronRuns } from './schema'
 import type { ContentItem, Category } from '../types'
 
 export async function getRecentItems(opts: {
@@ -86,4 +86,37 @@ function rowToContentItem(row: typeof contentItems.$inferSelect): ContentItem {
     fetched_at: row.fetched_at.toISOString(),
     created_at: row.created_at.toISOString(),
   }
+}
+
+export async function insertCronRun(): Promise<string> {
+  const [row] = await db
+    .insert(cronRuns)
+    .values({ started_at: new Date() })
+    .returning({ id: cronRuns.id })
+  return row.id
+}
+
+export async function finishCronRun(
+  id: string,
+  data: { items_added: number; items_skipped: number; errors: unknown },
+): Promise<void> {
+  await db
+    .update(cronRuns)
+    .set({
+      finished_at: new Date(),
+      items_added: data.items_added,
+      items_skipped: data.items_skipped,
+      errors: data.errors as any,
+    })
+    .where(eq(cronRuns.id, id))
+}
+
+export async function getLastCronRun() {
+  const [row] = await db
+    .select()
+    .from(cronRuns)
+    .where(sql`${cronRuns.finished_at} IS NOT NULL`)
+    .orderBy(desc(cronRuns.finished_at))
+    .limit(1)
+  return row ?? null
 }
