@@ -1,4 +1,4 @@
-import type { Category } from './types'
+import type { Category, ContentItem } from './types'
 
 export function formatDuration(seconds: number): string {
   if (seconds < 3600) {
@@ -51,4 +51,20 @@ export function formatRelativeTime(date: Date): string {
   if (diffMins < 60) return diffMins === 1 ? '1 minute ago' : `${diffMins} minutes ago`
   if (diffHours < 24) return diffHours === 1 ? '1 hour ago' : `${diffHours} hours ago`
   return diffDays === 1 ? 'yesterday' : `${diffDays} days ago`
+}
+
+export function getEmbedUrl(item: ContentItem): string | null {
+  try {
+    if (item.source_type === 'youtube') {
+      const videoId = new URL(item.url).searchParams.get('v')
+      return videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=1` : null
+    }
+    if (item.source_type === 'spotify') {
+      const path = new URL(item.url).pathname // e.g. /episode/abc123
+      return `https://open.spotify.com/embed${path}`
+    }
+  } catch {
+    // malformed URL — fall through
+  }
+  return null
 }

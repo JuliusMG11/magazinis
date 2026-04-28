@@ -3,6 +3,7 @@ import { Fraunces, Inter, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import { EmbedDrawerProvider } from '@/components/ui/EmbedDrawer'
 
 const fraunces = Fraunces({
   subsets: ['latin'],
@@ -57,9 +58,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="bg-canvas text-ink min-h-screen font-sans">
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <EmbedDrawerProvider>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </EmbedDrawerProvider>
       </body>
     </html>
   )
