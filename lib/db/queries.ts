@@ -1,6 +1,7 @@
-import { desc, eq, sql } from 'drizzle-orm'
+import { desc, eq, isNotNull } from 'drizzle-orm'
 import { db } from './client'
 import { contentItems, cronRuns } from './schema'
+import type { CronRunRow } from './schema'
 import type { ContentItem, Category } from '../types'
 
 export async function getRecentItems(opts: {
@@ -91,8 +92,9 @@ function rowToContentItem(row: typeof contentItems.$inferSelect): ContentItem {
 export async function insertCronRun(): Promise<string> {
   const [row] = await db
     .insert(cronRuns)
-    .values({ started_at: new Date() })
+    .values({})
     .returning({ id: cronRuns.id })
+  if (!row) throw new Error('cron run insert returned no row')
   return row.id
 }
 
@@ -111,11 +113,11 @@ export async function finishCronRun(
     .where(eq(cronRuns.id, id))
 }
 
-export async function getLastCronRun() {
+export async function getLastCronRun(): Promise<CronRunRow | null> {
   const [row] = await db
     .select()
     .from(cronRuns)
-    .where(sql`${cronRuns.finished_at} IS NOT NULL`)
+    .where(isNotNull(cronRuns.finished_at))
     .orderBy(desc(cronRuns.finished_at))
     .limit(1)
   return row ?? null
