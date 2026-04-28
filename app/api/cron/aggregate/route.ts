@@ -16,8 +16,15 @@ export async function GET(request: Request) {
   const runId = await insertCronRun()
   console.log(`[cron] run started — id: ${runId}`)
 
-  const adapters = getAllAdapters()
-  const result = await runAggregation(adapters)
+  let result: { added: number; skipped: number; errors: Array<{ source: string; message: string }> }
+  try {
+    const adapters = getAllAdapters()
+    result = await runAggregation(adapters)
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err)
+    await finishCronRun(runId, { items_added: 0, items_skipped: 0, errors: [{ source: 'aggregator', message: msg }] })
+    return Response.json({ error: msg }, { status: 500 })
+  }
 
   await finishCronRun(runId, {
     items_added: result.added,
@@ -32,6 +39,6 @@ export async function GET(request: Request) {
     run_id: runId,
     added: result.added,
     skipped: result.skipped,
-    errors: result.errors,
+    errors: result.errors.length > 0 ? result.errors : null,
   })
 }
