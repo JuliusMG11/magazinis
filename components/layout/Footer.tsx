@@ -9,7 +9,12 @@ const SOURCES = [
 ]
 
 export async function Footer() {
-  const lastRun = await getLastCronRun()
+  let lastRun = null
+  try {
+    lastRun = await getLastCronRun()
+  } catch {
+    // DB unavailable during build or deploy — show fallback
+  }
   const lastUpdatedText = lastRun?.finished_at
     ? `Updated ${formatRelativeTime(lastRun.finished_at)}`
     : 'Updated daily at 07:00 CET'

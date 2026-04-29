@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   if (!ALL_CATEGORIES.includes(category as Category)) return {}
   const label = CATEGORY_LABELS[category as Category]
   return {
-    title: `${label} — Daily Digest`,
+    title: label,
     description: `The best ${label.toLowerCase()} content from YouTube, podcasts, news, and forums — curated daily.`,
     openGraph: {
       title: `${label} — Daily Digest`,
@@ -29,10 +29,6 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
       type: 'website',
     },
   }
-}
-
-export async function generateStaticParams() {
-  return ALL_CATEGORIES.map((category) => ({ category }))
 }
 
 function CardByType({ item, size }: { item: ContentItem; size?: 'default' | 'large' }) {

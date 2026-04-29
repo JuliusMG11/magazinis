@@ -33,7 +33,7 @@ export async function generateMetadata({
   if (category && ALL_CATEGORIES.includes(category as Category)) {
     const label = CATEGORY_LABELS[category as Category]
     return {
-      title: `${label} — Daily Digest`,
+      title: label,
       description: `Today's best ${label.toLowerCase()} content, curated daily.`,
     }
   }
