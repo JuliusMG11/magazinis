@@ -1,8 +1,6 @@
 import type {
   RssSourceConfig,
   MediumSourceConfig,
-  HnCategoryConfig,
-  RedditSourceConfig,
   YouTubeChannelConfig,
   SpotifyShowConfig,
 } from './types'
@@ -49,62 +47,6 @@ export const MEDIUM_SOURCES: MediumSourceConfig[] = [
   { name: 'Better Programming', url: 'https://medium.com/feed/better-programming', category: 'backend' },
   { name: 'Medium: Artificial Intelligence', url: 'https://medium.com/feed/tag/artificial-intelligence', category: 'ai' },
   { name: 'Towards Data Science', url: 'https://medium.com/feed/towards-data-science', category: 'ai-dev' },
-]
-
-// ── HackerNews keyword classifier ────────────────────────────────────────────
-// Order matters: more-specific categories (ai-dev) must come before general ones (ai).
-export const HN_CATEGORY_CONFIGS: HnCategoryConfig[] = [
-  {
-    category: 'ai-dev',
-    keywords: [
-      'claude code', 'copilot', 'cursor ', 'mcp', 'model context protocol',
-      'ai coding', 'agentic', 'ai agent', 'code generation', 'ai for developers',
-      'llm tool', 'ai pair', 'devin',
-    ],
-  },
-  {
-    category: 'ai',
-    keywords: [
-      'gpt', 'claude', 'gemini', 'llm', 'large language model',
-      'artificial intelligence', 'openai', 'anthropic', 'deepmind',
-      'machine learning', 'llama', 'mistral', 'ai model', 'foundation model',
-    ],
-  },
-  {
-    category: 'frontend',
-    keywords: [
-      'react', 'next.js', 'nextjs', 'vue', 'svelte', 'css ', 'tailwind',
-      'browser', 'frontend', 'webassembly', 'remix', 'astro', 'angular',
-      'web components', 'vite',
-    ],
-  },
-  {
-    category: 'backend',
-    keywords: [
-      'node.js', 'nodejs', 'bun ', 'deno', 'postgresql', 'mongodb', 'redis',
-      'docker', 'kubernetes', 'serverless', 'backend', 'rest api', 'graphql',
-      'microservice', 'hono', 'fastify',
-    ],
-  },
-  {
-    category: 'startups',
-    keywords: [
-      'startup', 'founder', 'funding', 'series a', 'series b', 'series c',
-      'venture capital', 'y combinator', 'seed round', 'acquired', 'acquisition',
-      'ipo', 'valuation', 'unicorn',
-    ],
-  },
-]
-
-// ── Reddit subreddits ─────────────────────────────────────────────────────────
-export const REDDIT_SOURCES: RedditSourceConfig[] = [
-  { subreddit: 'startups', category: 'startups' },
-  { subreddit: 'javascript', category: 'frontend' },
-  { subreddit: 'reactjs', category: 'frontend' },
-  { subreddit: 'node', category: 'backend' },
-  { subreddit: 'MachineLearning', category: 'ai' },
-  { subreddit: 'artificial', category: 'ai' },
-  { subreddit: 'LocalLLaMA', category: 'ai-dev' },
 ]
 
 // ── YouTube channels ─────────────────────────────────────────────────────────

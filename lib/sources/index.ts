@@ -1,17 +1,8 @@
 import { createRssAdapter } from './rss'
 import { createMediumAdapter } from './medium'
-import { createHnAdapter } from './hackernews'
-import { createRedditAdapter } from './reddit'
 import { createYoutubeAdapter } from './youtube'
 import { createSpotifyAdapter } from './spotify'
-import {
-  RSS_SOURCES,
-  MEDIUM_SOURCES,
-  HN_CATEGORY_CONFIGS,
-  REDDIT_SOURCES,
-  YOUTUBE_CHANNELS,
-  SPOTIFY_SHOWS,
-} from './config'
+import { RSS_SOURCES, MEDIUM_SOURCES, YOUTUBE_CHANNELS, SPOTIFY_SHOWS } from './config'
 import type { SourceAdapter } from './types'
 
 export function getAllAdapters(): SourceAdapter[] {
@@ -19,8 +10,6 @@ export function getAllAdapters(): SourceAdapter[] {
 
   for (const c of RSS_SOURCES) adapters.push(createRssAdapter(c))
   for (const c of MEDIUM_SOURCES) adapters.push(createMediumAdapter(c))
-  adapters.push(createHnAdapter(HN_CATEGORY_CONFIGS))
-  for (const c of REDDIT_SOURCES) adapters.push(createRedditAdapter(c))
 
   const ytKey = process.env.YOUTUBE_API_KEY
   if (ytKey) {

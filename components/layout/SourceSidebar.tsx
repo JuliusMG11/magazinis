@@ -9,7 +9,6 @@ const SECTIONS = [
   { key: 'youtube' as const, label: 'Videos' },
   { key: 'spotify' as const, label: 'Podcasts' },
   { key: 'news' as const, label: 'News & Blogs' },
-  { key: 'forum' as const, label: 'Forum' },
 ]
 
 function SidebarInner() {
