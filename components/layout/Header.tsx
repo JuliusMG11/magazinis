@@ -29,7 +29,7 @@ export function Header() {
                 className="font-display font-bold text-xl tracking-tight text-ink"
                 style={{ fontVariantLigatures: 'none' }}
               >
-                Daily Digest
+                Tech Magazinis
               </span>
             </a>
             <DateDisplay />

@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
     title: label,
     description: `The best ${label.toLowerCase()} content from YouTube, podcasts, news, and forums — curated daily.`,
     openGraph: {
-      title: `${label} — Daily Digest`,
+      title: `${label} — Tech Magazinis`,
       description: `The best ${label.toLowerCase()} content, curated daily.`,
       type: 'website',
     },

@@ -26,7 +26,7 @@ export async function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-10">
           <div>
-            <p className="font-display font-bold text-lg text-ink mb-2">Daily Digest</p>
+            <p className="font-display font-bold text-lg text-ink mb-2">Tech Magazinis</p>
             <p className="text-sm text-ink-muted leading-relaxed max-w-xs">
               A daily curated magazine pulling the best of tech, startups, and AI from across the web.
             </p>
@@ -55,7 +55,7 @@ export async function Footer() {
         </div>
         <div className="pt-6 border-t border-stroke-subtle flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
           <p className="t-meta">{lastUpdatedText}</p>
-          <p className="t-meta">© {year} Daily Digest — personal project, no commercial affiliation</p>
+          <p className="t-meta">© {year} Tech Magazinis — personal project, no commercial affiliation</p>
         </div>
       </div>
     </footer>

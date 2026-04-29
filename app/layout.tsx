@@ -27,20 +27,20 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Daily Digest — Tech & Startup Magazine',
-    template: '%s — Daily Digest',
+    default: 'Tech Magazinis — Tech & Startup Magazine',
+    template: '%s — Tech Magazinis',
   },
   description: 'A daily curated magazine for tech, startups, frontend, backend, and AI — aggregated every morning from YouTube, podcasts, news, and forums.',
   openGraph: {
-    siteName: 'Daily Digest',
-    title: 'Daily Digest — Tech & Startup Magazine',
+    siteName: 'Tech Magazinis',
+    title: 'Tech Magazinis — Tech & Startup Magazine',
     description: 'Your daily curated tech magazine.',
     type: 'website',
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Daily Digest',
+    title: 'Tech Magazinis',
     description: 'Your daily curated tech magazine.',
   },
   robots: {
