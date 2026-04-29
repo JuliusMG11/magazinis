@@ -3,6 +3,7 @@ import { Fraunces, Inter, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import { SourceSidebar } from '@/components/layout/SourceSidebar'
 import { EmbedDrawerProvider } from '@/components/ui/EmbedDrawer'
 
 const fraunces = Fraunces({
@@ -74,8 +75,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="bg-canvas text-ink min-h-screen font-sans">
         <EmbedDrawerProvider>
           <Header />
-          <main>{children}</main>
-          <Footer />
+          <div className="flex">
+            <SourceSidebar />
+            <div className="flex-1 min-w-0">
+              <main>{children}</main>
+              <Footer />
+            </div>
+          </div>
         </EmbedDrawerProvider>
       </body>
     </html>

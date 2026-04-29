@@ -23,13 +23,14 @@ function CardByType({ item, size }: { item: ContentItem; size?: 'default' | 'lar
 }
 
 interface HomePageProps {
-  searchParams: Promise<{ category?: string }>
+  searchParams: Promise<{ category?: string; source?: string }>
 }
 
 export async function generateMetadata({
   searchParams,
 }: HomePageProps): Promise<Metadata> {
-  const { category } = await searchParams
+  const { category, source } = await searchParams
+  if (source) return { title: source }
   if (category && ALL_CATEGORIES.includes(category as Category)) {
     const label = CATEGORY_LABELS[category as Category]
     return {
@@ -41,11 +42,11 @@ export async function generateMetadata({
 }
 
 export default async function HomePage({ searchParams }: HomePageProps) {
-  const { category } = await searchParams
+  const { category, source } = await searchParams
   const activeCategory = category as Category | undefined
 
-  const hero = await getHeroItem()
-  const rest = await getRecentItems({ category: activeCategory, limit: 30 })
+  const hero = source ? null : await getHeroItem()
+  const rest = await getRecentItems({ category: activeCategory, source, limit: 30 })
   const gridItems = hero ? rest.filter((item) => item.id !== hero.id) : rest
 
   return (

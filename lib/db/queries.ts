@@ -1,4 +1,4 @@
-import { desc, eq, isNotNull } from 'drizzle-orm'
+import { desc, eq, isNotNull, and } from 'drizzle-orm'
 import { db } from './client'
 import { contentItems, cronRuns } from './schema'
 import type { CronRunRow } from './schema'
@@ -6,15 +6,19 @@ import type { ContentItem, Category } from '../types'
 
 export async function getRecentItems(opts: {
   category?: Category
+  source?: string
   limit?: number
   offset?: number
 }): Promise<ContentItem[]> {
-  const { category, limit = 20, offset = 0 } = opts
+  const { category, source, limit = 20, offset = 0 } = opts
 
   const rows = await db
     .select()
     .from(contentItems)
-    .where(category ? eq(contentItems.category, category) : undefined)
+    .where(and(
+      category ? eq(contentItems.category, category) : undefined,
+      source ? eq(contentItems.source_name, source) : undefined,
+    ))
     .orderBy(desc(contentItems.published_at))
     .limit(limit)
     .offset(offset)
@@ -34,14 +38,17 @@ export async function getHeroItem(): Promise<ContentItem | null> {
 
 export async function getItemsByCategory(
   category: Category,
-  opts: { limit?: number; offset?: number } = {},
+  opts: { limit?: number; offset?: number; source?: string } = {},
 ): Promise<ContentItem[]> {
-  const { limit = 20, offset = 0 } = opts
+  const { limit = 20, offset = 0, source } = opts
 
   const rows = await db
     .select()
     .from(contentItems)
-    .where(eq(contentItems.category, category))
+    .where(and(
+      eq(contentItems.category, category),
+      source ? eq(contentItems.source_name, source) : undefined,
+    ))
     .orderBy(desc(contentItems.published_at))
     .limit(limit)
     .offset(offset)

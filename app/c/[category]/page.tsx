@@ -13,7 +13,7 @@ const PAGE_SIZE = 30
 
 interface CategoryPageProps {
   params: Promise<{ category: string }>
-  searchParams: Promise<{ page?: string }>
+  searchParams: Promise<{ page?: string; source?: string }>
 }
 
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
@@ -46,7 +46,7 @@ function CardByType({ item, size }: { item: ContentItem; size?: 'default' | 'lar
 
 export default async function CategoryPage({ params, searchParams }: CategoryPageProps) {
   const { category } = await params
-  const { page: pageParam } = await searchParams
+  const { page: pageParam, source } = await searchParams
 
   if (!ALL_CATEGORIES.includes(category as Category)) notFound()
 
@@ -54,7 +54,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
   const page = Math.max(1, parseInt(pageParam ?? '1', 10) || 1)
   const offset = (page - 1) * PAGE_SIZE
 
-  const items = await getItemsByCategory(cat, { limit: PAGE_SIZE + 1, offset })
+  const items = await getItemsByCategory(cat, { limit: PAGE_SIZE + 1, offset, source })
   const hasNextPage = items.length > PAGE_SIZE
   const pageItems = hasNextPage ? items.slice(0, PAGE_SIZE) : items
   const label = CATEGORY_LABELS[cat]
