@@ -11,21 +11,31 @@ import type {
 export const RSS_SOURCES: RssSourceConfig[] = [
   // Startups
   { name: 'TechCrunch', url: 'https://techcrunch.com/feed/', category: 'startups' },
+  { name: 'CzechCrunch', url: 'https://cc.cz/feed/', category: 'startups' },
+  { name: 'The Next Web', url: 'https://thenextweb.com/feed/', category: 'startups' },
   { name: 'Sifted', url: 'https://sifted.eu/rss/', category: 'startups' },
   { name: 'EU-Startups', url: 'https://www.eu-startups.com/feed/', category: 'startups' },
   // Frontend
-  { name: 'CSS-Tricks', url: 'https://css-tricks.com/feed/', category: 'frontend' },
+  { name: 'JavaScript Weekly', url: 'https://javascriptweekly.com/rss/', category: 'frontend' },
+  { name: 'Frontend Focus', url: 'https://frontendfoc.us/rss', category: 'frontend' },
   { name: 'Smashing Magazine', url: 'https://www.smashingmagazine.com/feed/', category: 'frontend' },
   { name: 'web.dev', url: 'https://web.dev/feed.xml', category: 'frontend' },
+  { name: 'CSS-Tricks', url: 'https://css-tricks.com/feed/', category: 'frontend' },
   { name: 'Vercel Blog', url: 'https://vercel.com/blog/rss', category: 'frontend' },
   // Backend
+  { name: 'InfoQ', url: 'https://feed.infoq.com/', category: 'backend' },
+  { name: 'Changelog', url: 'https://changelog.com/feed', category: 'backend' },
+  { name: 'Lobste.rs', url: 'https://lobste.rs/rss', category: 'backend' },
+  { name: 'Node Weekly', url: 'https://nodeweekly.com/rss/', category: 'backend' },
+  { name: 'Bun Blog', url: 'https://bun.sh/rss.xml', category: 'backend' },
+  { name: 'Deno Blog', url: 'https://deno.com/feed', category: 'backend' },
   { name: 'Node.js Blog', url: 'https://nodejs.org/en/feed/blog.xml', category: 'backend' },
   { name: 'Dev.to node', url: 'https://dev.to/feed/tag/node', category: 'backend' },
   { name: 'Dev.to TypeScript', url: 'https://dev.to/feed/tag/typescript', category: 'backend' },
   // AI News
   { name: 'The Decoder', url: 'https://the-decoder.com/feed/', category: 'ai' },
+  { name: 'VentureBeat', url: 'https://venturebeat.com/feed/', category: 'ai' },
   { name: 'MIT Tech Review AI', url: 'https://www.technologyreview.com/feed/', category: 'ai' },
-  { name: 'VentureBeat AI', url: 'https://venturebeat.com/ai/feed/', category: 'ai' },
   // AI Dev
   { name: 'Dev.to AI', url: 'https://dev.to/feed/tag/ai', category: 'ai-dev' },
   { name: 'Dev.to machine-learning', url: 'https://dev.to/feed/tag/machinelearning', category: 'ai-dev' },
