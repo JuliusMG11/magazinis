@@ -1,4 +1,6 @@
+import type { Metadata } from 'next'
 import type { Category, ContentItem } from '@/lib/types'
+import { CATEGORY_LABELS, ALL_CATEGORIES } from '@/lib/types'
 import { getHeroItem, getRecentItems } from '@/lib/db/queries'
 import { HeroCard } from '@/components/cards/HeroCard'
 import { VideoCardInteractive } from '@/components/cards/VideoCardInteractive'
@@ -22,6 +24,20 @@ function CardByType({ item, size }: { item: ContentItem; size?: 'default' | 'lar
 
 interface HomePageProps {
   searchParams: Promise<{ category?: string }>
+}
+
+export async function generateMetadata({
+  searchParams,
+}: HomePageProps): Promise<Metadata> {
+  const { category } = await searchParams
+  if (category && ALL_CATEGORIES.includes(category as Category)) {
+    const label = CATEGORY_LABELS[category as Category]
+    return {
+      title: `${label} — Daily Digest`,
+      description: `Today's best ${label.toLowerCase()} content, curated daily.`,
+    }
+  }
+  return {}
 }
 
 export default async function HomePage({ searchParams }: HomePageProps) {
