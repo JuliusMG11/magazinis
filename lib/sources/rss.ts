@@ -17,6 +17,9 @@ const parser = new Parser<Record<string, unknown>, RssItem>({
   customFields: {
     item: [['media:content', 'media:content', { keepArray: false }]],
   },
+  requestOptions: {
+    headers: { 'User-Agent': 'Mozilla/5.0 (compatible; TechMagazinis/1.0)' },
+  },
 })
 
 const FETCH_WINDOW_MS = 30 * 60 * 60 * 1000 // 30 hours

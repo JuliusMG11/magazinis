@@ -11,7 +11,7 @@ export const RSS_SOURCES: RssSourceConfig[] = [
   { name: 'TechCrunch', url: 'https://techcrunch.com/feed/', category: 'startups' },
   { name: 'CzechCrunch', url: 'https://cc.cz/feed/', category: 'startups' },
   { name: 'The Next Web', url: 'https://thenextweb.com/feed/', category: 'startups' },
-  { name: 'Sifted', url: 'https://sifted.eu/rss/', category: 'startups' },
+  { name: 'tech.eu', url: 'https://tech.eu/feed/', category: 'startups' },
   { name: 'EU-Startups', url: 'https://www.eu-startups.com/feed/', category: 'startups' },
   // Frontend
   { name: 'JavaScript Weekly', url: 'https://javascriptweekly.com/rss/', category: 'frontend' },
@@ -19,7 +19,7 @@ export const RSS_SOURCES: RssSourceConfig[] = [
   { name: 'Smashing Magazine', url: 'https://www.smashingmagazine.com/feed/', category: 'frontend' },
   { name: 'web.dev', url: 'https://web.dev/feed.xml', category: 'frontend' },
   { name: 'CSS-Tricks', url: 'https://css-tricks.com/feed/', category: 'frontend' },
-  { name: 'Vercel Blog', url: 'https://vercel.com/blog/rss', category: 'frontend' },
+  { name: 'Vercel Blog', url: 'https://vercel.com/atom', category: 'frontend' },
   // Backend
   { name: 'InfoQ', url: 'https://feed.infoq.com/', category: 'backend' },
   { name: 'Changelog', url: 'https://changelog.com/feed', category: 'backend' },
