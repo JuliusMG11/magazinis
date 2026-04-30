@@ -26,6 +26,7 @@ export function getCategoryColor(category: Category): string {
     backend: 'text-backend',
     ai: 'text-ai',
     'ai-dev': 'text-aidev',
+    crypto: 'text-crypto',
   }
   return map[category]
 }
@@ -37,6 +38,7 @@ export function getCategoryDimBg(category: Category): string {
     backend: 'bg-backend-dim dark:bg-backend/10',
     ai: 'bg-ai-dim dark:bg-ai/10',
     'ai-dev': 'bg-aidev-dim dark:bg-aidev/10',
+    crypto: 'bg-crypto-dim dark:bg-crypto/10',
   }
   return map[category]
 }

@@ -44,6 +44,7 @@
   --color-backend: #16A34A;
   --color-ai: #7C3AED;
   --color-aidev: #DB2777;
+  --color-crypto: #D97706;
 
   /* Category accent backgrounds (very low opacity versions) */
   --color-startups-dim: #FFF4EE;
@@ -51,6 +52,7 @@
   --color-backend-dim: #F0FAF3;
   --color-ai-dim: #F4F0FF;
   --color-aidev-dim: #FFF0F7;
+  --color-crypto-dim: #FFFBEB;
 
   /* Fonts — next/font sets these CSS vars on <html> */
   --font-display: var(--font-fraunces);

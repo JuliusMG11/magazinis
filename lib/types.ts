@@ -1,6 +1,6 @@
 export type SourceType = 'youtube' | 'spotify' | 'medium' | 'rss' | 'forum'
 
-export type Category = 'startups' | 'frontend' | 'backend' | 'ai' | 'ai-dev'
+export type Category = 'startups' | 'frontend' | 'backend' | 'ai' | 'ai-dev' | 'crypto'
 
 export interface ContentItem {
   id: string
@@ -25,6 +25,7 @@ export const CATEGORY_LABELS: Record<Category, string> = {
   backend: 'Backend',
   ai: 'AI News',
   'ai-dev': 'AI Dev',
+  crypto: 'Crypto',
 }
 
-export const ALL_CATEGORIES: Category[] = ['startups', 'frontend', 'backend', 'ai', 'ai-dev']
+export const ALL_CATEGORIES: Category[] = ['startups', 'frontend', 'backend', 'ai', 'ai-dev', 'crypto']

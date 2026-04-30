@@ -38,6 +38,11 @@ export const RSS_SOURCES: RssSourceConfig[] = [
   { name: 'Dev.to AI', url: 'https://dev.to/feed/tag/ai', category: 'ai-dev' },
   { name: 'Dev.to machine-learning', url: 'https://dev.to/feed/tag/machinelearning', category: 'ai-dev' },
   { name: 'Dev.to LLM', url: 'https://dev.to/feed/tag/llm', category: 'ai-dev' },
+  // Crypto
+  { name: 'CoinTelegraph', url: 'https://cointelegraph.com/rss', category: 'crypto' },
+  { name: 'Decrypt', url: 'https://decrypt.co/feed', category: 'crypto' },
+  { name: 'Bitcoin Magazine', url: 'https://bitcoinmagazine.com/feed', category: 'crypto' },
+  { name: 'The Block', url: 'https://www.theblock.co/rss.xml', category: 'crypto' },
 ]
 
 // ── Medium RSS feeds ─────────────────────────────────────────────────────────
@@ -58,6 +63,9 @@ export const YOUTUBE_CHANNELS: YouTubeChannelConfig[] = [
   { channelId: 'UCsBjURrPoezykLs9EqgamOA', name: 'Fireship', category: 'frontend' },
   { channelId: 'UCbmNph6atAoGfqLoCL_duAg', name: 'Theo', category: 'frontend' },
   { channelId: 'UCFbNIlppjAuEX4znoulh0Cw', name: 'Web Dev Simplified', category: 'frontend' },
+  // Frontend
+  { channelId: 'UC8butISFwT-Wl7EV0hUK0BQ', name: 'freeCodeCamp', category: 'frontend' },
+  { channelId: 'UCqr-7GDVTsdNBCeufvERYuw', name: 'Dev Ed', category: 'frontend' },
   // AI News
   { channelId: 'UCNJ1Ymd5yFuUPtn21xtRbbw', name: 'AI Explained', category: 'ai' },
   { channelId: 'UCbfYPyITQ-7l4upoX8nvctg', name: 'Two Minute Papers', category: 'ai' },
@@ -68,8 +76,11 @@ export const YOUTUBE_CHANNELS: YouTubeChannelConfig[] = [
 // ── Spotify shows ─────────────────────────────────────────────────────────────
 // Show IDs from: https://open.spotify.com/show/{showId}
 export const SPOTIFY_SHOWS: SpotifyShowConfig[] = [
+  // Startups
+  { showId: '2Ww2e4JNO2cfxWC2ImR7DJ', name: 'Startups For the Rest of Us', category: 'startups' },
   // Frontend
   { showId: '4kYCRYJ3yK5DQbP5tbfZby', name: 'Syntax.fm', category: 'frontend' },
+  { showId: '0MFC3eW0j1U9HC5U1dUZ0Y', name: 'Front-End Fire', category: 'frontend' },
   // AI News
   { showId: '2MAi0BvDc6GTFvKFPXnkCL', name: 'Lex Fridman Podcast', category: 'ai' },
 ]
