@@ -47,11 +47,20 @@ export const RSS_SOURCES: RssSourceConfig[] = [
 
 // ── Medium RSS feeds ─────────────────────────────────────────────────────────
 export const MEDIUM_SOURCES: MediumSourceConfig[] = [
-  { name: 'Medium: Startup', url: 'https://medium.com/feed/tag/startup', category: 'startups' },
-  { name: 'Medium: JavaScript', url: 'https://medium.com/feed/tag/javascript', category: 'frontend' },
+  // Startups / Business
+  { name: 'The Startup (Medium)', url: 'https://medium.com/feed/the-startup', category: 'startups' },
+  { name: 'SWLH (Medium)', url: 'https://medium.com/feed/swlh', category: 'startups' },
+  // Frontend
+  { name: 'JavaScript Plain English', url: 'https://medium.com/feed/javascript-in-plain-english', category: 'frontend' },
+  { name: 'Level Up Coding', url: 'https://levelup.gitconnected.com/feed', category: 'frontend' },
+  // Backend
   { name: 'Better Programming', url: 'https://medium.com/feed/better-programming', category: 'backend' },
-  { name: 'Medium: Artificial Intelligence', url: 'https://medium.com/feed/tag/artificial-intelligence', category: 'ai' },
+  { name: 'Codeburst', url: 'https://medium.com/feed/codeburst', category: 'backend' },
+  // AI
   { name: 'Towards Data Science', url: 'https://medium.com/feed/towards-data-science', category: 'ai-dev' },
+  // Crypto
+  { name: 'Coinmonks (Medium)', url: 'https://medium.com/feed/coinmonks', category: 'crypto' },
+  { name: 'The Capital (Medium)', url: 'https://medium.com/feed/the-capital', category: 'crypto' },
 ]
 
 // ── YouTube channels ─────────────────────────────────────────────────────────

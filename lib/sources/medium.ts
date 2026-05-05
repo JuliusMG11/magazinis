@@ -26,38 +26,6 @@ const parser = new Parser<Record<string, unknown>, MediumItem>({
 })
 
 const FETCH_WINDOW_MS = 30 * 60 * 60 * 1000
-const MIN_FOLLOWERS = 1_000
-
-// Per-run in-memory cache — avoids duplicate lookups for the same author
-const followerCache = new Map<string, number>()
-
-function extractUsername(url: string): string | null {
-  const match = url.match(/medium\.com\/@([A-Za-z0-9_.-]+)\//)
-  return match?.[1] ?? null
-}
-
-async function getFollowerCount(username: string): Promise<number> {
-  const cached = followerCache.get(username)
-  if (cached !== undefined) return cached
-
-  try {
-    const res = await fetch(`https://medium.com/@${username}?format=json`, {
-      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; TechMagazinis/1.0)' },
-    })
-    if (!res.ok) return Infinity // fail open: don't discard on API error
-    const text = await res.text()
-    const jsonStart = text.indexOf('{')
-    if (jsonStart === -1) return Infinity
-    const data = JSON.parse(text.slice(jsonStart)) as {
-      payload?: { user?: { socialStats?: { followerCount?: number } } }
-    }
-    const count = data?.payload?.user?.socialStats?.followerCount ?? Infinity
-    followerCache.set(username, count)
-    return count
-  } catch {
-    return Infinity // fail open
-  }
-}
 
 export function createMediumAdapter(config: MediumSourceConfig): SourceAdapter {
   return {
@@ -78,12 +46,6 @@ export function createMediumAdapter(config: MediumSourceConfig): SourceAdapter {
 
         // Strip query params from Medium canonical URLs
         const url = item.link.split('?')[0]
-
-        const username = extractUsername(url)
-        if (username) {
-          const followers = await getFollowerCount(username)
-          if (followers < MIN_FOLLOWERS) continue
-        }
 
         items.push({
           source_type: 'medium',
